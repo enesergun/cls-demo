@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 CLS Demo – Cumulative Layout Shift Optimization Example
 
-## Getting Started
+This project demonstrates the difference between **poorly implemented layout rendering** that causes layout shifts (CLS issues) and **well-optimized rendering** using modern frontend practices.
 
-First, run the development server:
+Built with **Next.js App Router** and **React**, this example visually compares a `bad` page with layout instability and a `good` page where CLS is eliminated.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📖 What is CLS?
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**CLS (Cumulative Layout Shift)** is a Core Web Vitals metric that measures visual stability. It tracks how much content moves unexpectedly on the screen — typically due to missing image dimensions, late-loaded ads, or dynamic content injection.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+> 🎯 A good CLS score is **below 0.1**. Scores above 0.25 are considered poor.
 
-## Learn More
+Learn more: [enesergun/cls]([https://web.dev/cls](https://enesergun.medium.com/gerçek-hayattan-örneklerle-cumulative-layout-shift-optimizasyonu-2713ff1fe0de))
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🧪 Pages
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- 🔴 [`/bad`](https://cls-demo.vercel.app/bad):  
+  Triggers layout shift via:
+  - Late-loaded image (no width/height)
+  - Dynamically injected ad block
+  - No reserved space
 
-## Deploy on Vercel
+- ✅ [`/good`](https://cls-demo.vercel.app/good):  
+  Prevents CLS by:
+  - Using `width`, `height`, and `aspect-ratio`
+  - Reserving space for content with `min-height`
+  - Smooth transitions with no visual jumps
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
+## 🌐 Live Demo
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 🔴 **Bad Page:** [https://cls-demo.vercel.app/bad](https://cls-demo.vercel.app/bad)  
+- ✅ **Good Page:** [https://cls-demo.vercel.app/good](https://cls-demo.vercel.app/good)
+
+> 💡 **Tip:** Use Chrome DevTools with **"Disable Cache"** enabled and refresh the page using different query parameters like `?v=2`, `?v=3`, etc., to simulate fresh image loading and accurately observe CLS behavior.
